@@ -43,7 +43,7 @@ else:
     now = datetime.now(kst)
     
     # 오픈 시간 세팅: 2026년 2월 28일 오전 9시 0분 (연도는 현재 연도에 맞게 수정 가능)
-    open_time = datetime(2026, 2, 28, 9, 0, tzinfo=kst)
+    open_time = datetime(2026, 2, 23, 2, 25, tzinfo=kst)
     
     # 아직 오픈 시간이 안 되었다면?
     if now < open_time:
@@ -147,4 +147,5 @@ else:
                 st.button('마감 완료', key=f"btn_{time_slot}", disabled=True, use_container_width=True)
                 
         st.write("")
+
 
