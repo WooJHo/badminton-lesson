@@ -30,7 +30,7 @@ menu = st.sidebar.radio(
 # [각 회차별 상세 정보 설정]
 # (시트이름, 해당레슨날짜, 오픈날짜)
 lesson_info = {
-    "2월 3회차": {"sheet": "2월3회차", "date": "2월 28일", "open": datetime(2026, 2, 28, 9, 0)},
+    "2월 3회차": {"sheet": "2월3회차", "date": "2월 28일", "open": datetime(2026, 2, 22, 9, 0)},
     "3월 1회차": {"sheet": "3월1회차", "date": "3월 7일", "open": datetime(2026, 3, 7, 9, 0)},
     "3월 2회차": {"sheet": "3월2회차", "date": "3월 14일", "open": datetime(2026, 3, 14, 9, 0)},
     "3월 3회차": {"sheet": "3월3회차", "date": "3월 21일", "open": datetime(2026, 3, 21, 9, 0)}
@@ -131,3 +131,4 @@ for i, row in enumerate(data):
                     st.rerun()
         else:
             st.button('마감 완료', key=f"btn_{menu}_{time_slot}", disabled=True, use_container_width=True)
+
