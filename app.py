@@ -19,7 +19,7 @@ st.sidebar.title("🏸 대왕클럽 레슨 메뉴")
 menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["2월 3회차", "3월 1회차", "3월 2회차", "3월 3회차"])
 
 lesson_info = {
-    "2월 3회차": {"sheet": "2월3회차", "date": "2월 28일", "open": datetime(2026, 2, 28, 9, 0)},
+    "2월 3회차": {"sheet": "2월3회차", "date": "2월 28일", "open": datetime(2026, 2, 22, 9, 0)},
     "3월 1회차": {"sheet": "3월1회차", "date": "3월 7일", "open": datetime(2026, 3, 7, 9, 0)},
     "3월 2회차": {"sheet": "3월2회차", "date": "3월 14일", "open": datetime(2026, 3, 14, 9, 0)},
     "3월 3회차": {"sheet": "3월3회차", "date": "3월 21일", "open": datetime(2026, 3, 21, 9, 0)}
@@ -103,4 +103,5 @@ for i, row in enumerate(data):
                     st.rerun()
         else:
             st.button('마감', key=f"full_{i}", disabled=True, use_container_width=True)
+
     st.write("")
