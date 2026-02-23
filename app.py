@@ -61,7 +61,7 @@ st.write("---")
 st.subheader('⏰ 실시간 시간표 및 예약 현황')
 
 for i, row in enumerate(data):
-    # 각 타임대를 하나의 독립된 구역(container)으로 감쌉니다.
+    # 여기서부터 들여쓰기가 중요합니다! 각 타임대를 하나의 박스에 담습니다.
     with st.container():
         time_slot = str(row.get('시간대', ''))
         max_cap = int(row.get('최대인원', 1))
@@ -69,40 +69,48 @@ for i, row in enumerate(data):
         b2 = str(row.get('예약자2', '')).strip()
         row_num = i + 2
 
-    # UI 구성: 시간대와 현황
-    col1, col2 = st.columns([2.5, 1.5])
-    
-    with col1:
-        st.write(f"**{time_slot}** ({len([n for n in [b1, b2] if n])}/{max_cap}명)")
+        # UI 구성: 시간대와 현황
+        col1, col2 = st.columns([2.5, 1.5])
         
-        # 예약자 1 표시 및 취소 버튼
-        if b1:
-            c1, c2 = st.columns([0.7, 0.3])
-            c1.caption(f"👤 {b1}")
-            if c2.button("취소", key=f"del1_{i}"):
-                worksheet.update_cell(row_num, 3, "")
-                st.rerun()
-        
-        # 예약자 2 표시 및 취소 버튼
-        if b2:
-            c1, c2 = st.columns([0.7, 0.3])
-            c1.caption(f"👤 {b2}")
-            if c2.button("취소", key=f"del2_{i}"):
-                worksheet.update_cell(row_num, 4, "")
-                st.rerun()
-                
-    with col2:
-        # 빈자리가 있고, 현재 선택한 유저가 아직 예약 전일 때만 [예약하기] 활성화
-        if len([n for n in [b1, b2] if n]) < max_cap:
-            if st.button('예약하기', key=f"reg_{i}", use_container_width=True):
-                if user_name == "":
-                    st.warning('이름을 먼저 선택해주세요!')
-                elif user_name in all_booked_names:
-                    st.error('이미 다른 타임에 예약되어 있습니다!')
-                else:
-                    target_col = 3 if b1 == "" else 4
-                    worksheet.update_cell(row_num, target_col, user_name)
+        with col1:
+            # 시간대를 조금 더 강조해서 크게 표시
+            st.markdown(f"#### 📅 {time_slot}")
+            st.caption(f"인원 현황: {len([n for n in [b1, b2] if n])}/{max_cap}명")
+            
+            # 예약자 1 표시 및 취소 버튼
+            if b1:
+                c1, c2 = st.columns([0.6, 0.4])
+                c1.markdown(f"👤 **{b1}**")
+                if c2.button("취소", key=f"del1_{menu}_{i}"):
+                    worksheet.update_cell(row_num, 3, "")
                     st.rerun()
-        else:
-            st.button('마감', key=f"full_{i}", disabled=True, use_container_width=True)
-    st.write("")
+            
+            # 예약자 2 표시 및 취소 버튼
+            if b2:
+                c1, c2 = st.columns([0.6, 0.4])
+                c1.markdown(f"👤 **{b2}**")
+                if c2.button("취소", key=f"del2_{menu}_{i}"):
+                    worksheet.update_cell(row_num, 4, "")
+                    st.rerun()
+                    
+        with col2:
+            # 버튼 위치를 시간대 타이틀과 맞추기 위해 투명한 빈칸(##) 추가
+            st.write("##") 
+            
+            # 빈자리가 있고, 현재 선택한 유저가 아직 예약 전일 때만 [예약하기] 활성화
+            if len([n for n in [b1, b2] if n]) < max_cap:
+                # '예약하기' 버튼을 파란색(primary)으로 강조
+                if st.button('예약하기', key=f"reg_{menu}_{i}", use_container_width=True, type="primary"):
+                    if user_name == "":
+                        st.warning('이름을 먼저 선택해주세요!')
+                    elif user_name in all_booked_names:
+                        st.error('이미 다른 타임에 예약되어 있습니다!')
+                    else:
+                        target_col = 3 if b1 == "" else 4
+                        worksheet.update_cell(row_num, target_col, user_name)
+                        st.rerun()
+            else:
+                st.button('마감 완료', key=f"full_{menu}_{i}", disabled=True, use_container_width=True)
+        
+        # 각 시간대 블록 아래에 확실한 구분선(가로줄)을 넣어서 간격을 벌려줍니다.
+        st.divider()
