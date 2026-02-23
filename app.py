@@ -3,6 +3,7 @@ import gspread
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+
 # 브라우저 설정
 st.set_page_config(
     page_title="대왕클럽 주말 레슨 예약",
