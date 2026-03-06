@@ -15,13 +15,13 @@ def init_connection():
 gc = init_connection()
 
 st.sidebar.title("🏸 대왕클럽 레슨 메뉴")
-menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["2월 3회차", "3월 1회차", "3월 2회차", "3월 3회차"])
+menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["2월 3회차 레슨보강", "3월 1회차", "3월 2회차", "3월 3회차"])
 
 lesson_info = {
-    "2월 3회차": {"sheet": "2월3회차", "date": "2월 28일", "open": datetime(2026, 2, 22, 9, 0)},
-    "3월 1회차": {"sheet": "3월1회차", "date": "3월 7일", "open": datetime(2026, 3, 7, 9, 0)},
-    "3월 2회차": {"sheet": "3월2회차", "date": "3월 14일", "open": datetime(2026, 3, 14, 9, 0)},
-    "3월 3회차": {"sheet": "3월3회차", "date": "3월 21일", "open": datetime(2026, 3, 21, 9, 0)}
+    "2월 3회차": {"sheet": "2월3회차", "date": "3월 7일", "open": datetime(2026, 2, 22, 9, 0)},
+    "3월 1회차": {"sheet": "3월1회차", "date": "3월 14일", "open": datetime(2026, 3, 14, 9, 0)},
+    "3월 2회차": {"sheet": "3월2회차", "date": "3월 21일", "open": datetime(2026, 3, 21, 9, 0)},
+    "3월 3회차": {"sheet": "3월3회차", "date": "3월 28일", "open": datetime(2026, 3, 28, 9, 0)}
 }
 current_lesson = lesson_info[menu]
 
@@ -48,7 +48,7 @@ except:
     st.error("시트를 불러올 수 없습니다.")
     st.stop()
 
-is_game_lesson_week = menu in ["2월 3회차", "3월 3회차"]
+is_game_lesson_week = menu in ["2월 3회차 레슨보강", "3월 3회차"]
 all_booked_names = []
 
 for row in data:
