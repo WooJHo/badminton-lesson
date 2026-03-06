@@ -65,38 +65,44 @@ student_list = ["이름을 선택하세요", "김효은", "김현", "이종희",
 selected_name = st.selectbox('👇 본인 이름을 선택하고 아래 레슨을 클릭하세요', student_list)
 user_name = "" if selected_name == "이름을 선택하세요" else selected_name
 
-user_in_game_lesson = False
-user_game_row_idx = None
-
-if is_game_lesson_week and user_name != "" and user_name in game_lesson_names:
-    user_in_game_lesson = True
-    user_game_row_idx = game_col_values.index(user_name) + 1
-
+# ----------------- 게임 레슨 영역 -----------------
 if is_game_lesson_week:
     st.write("---")
     st.subheader('🔥 게임 레슨 신청 (인원 제한 없음)')
     
+    # 참가자 목록 및 직관적인 [취소] 버튼 출력
     if game_lesson_names:
-        st.info(f"**현재 참가자 ({len(game_lesson_names)}명):** {', '.join(game_lesson_names)}")
+        st.markdown(f"**현재 참가자 ({len(game_lesson_names)}명)**")
+        
+        for idx, g_name in enumerate(game_lesson_names):
+            c1, c2 = st.columns([0.7, 0.3]) # 가로 비율 설정
+            c1.markdown(f"👤 **{g_name}**")
+            # 이름 바로 옆에 취소 버튼 생성
+            if c2.button("취소", key=f"del_game_{menu}_{idx}"):
+                row_idx = game_col_values.index(g_name) + 1
+                worksheet.update_cell(row_idx, 6, "")
+                st.rerun()
     else:
         st.info("**현재 참가자:** 아직 신청자가 없습니다. 첫 번째로 신청해보세요!")
         
+    st.write("##") # 간격 띄우기
+
+    # 게임 레슨 신청 로직
     if user_name == "":
-        st.button('게임 레슨 신청하기', disabled=True, use_container_width=True)
+        st.button('👉 게임 레슨 신청하기', disabled=True, use_container_width=True)
         st.caption("위에서 이름을 먼저 선택해주세요.")
-    elif user_in_game_lesson:
-        if st.button('🚨 내 게임 레슨 취소하기', key="cancel_game", use_container_width=True):
-            worksheet.update_cell(user_game_row_idx, 6, "")
-            st.rerun()
+    elif user_name in game_lesson_names:
+        st.success(f"✅ **{user_name}**님은 게임 레슨에 신청 완료되었습니다.")
     elif user_name in all_booked_names:
         st.warning("이미 헌볼 레슨에 예약되어 있습니다. 게임 레슨을 원하시면 헌볼 레슨을 먼저 취소해주세요.")
-        st.button('게임 레슨 신청하기', disabled=True, use_container_width=True)
+        st.button('👉 게임 레슨 신청하기', disabled=True, use_container_width=True)
     else:
         if st.button('👉 게임 레슨 신청하기', key="book_game", type="primary", use_container_width=True):
             next_row = len(game_col_values) + 1
             worksheet.update_cell(next_row, 6, user_name)
             st.rerun()
 
+# ----------------- 헌볼 레슨 영역 -----------------
 st.write("---")
 st.subheader('⏰ 헌볼 레슨 시간표 및 예약 현황')
 st.caption('헌볼 레슨과 게임 레슨 중 하나만 선택 가능합니다.' if is_game_lesson_week else '')
