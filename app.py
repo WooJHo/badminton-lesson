@@ -20,7 +20,7 @@ menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["3월 1회차
 
 # 2월 3회차 정보 삭제
 lesson_info = {
-    "3월 1회차": {"sheet": "3월1회차", "date": "3월 14일", "open": datetime(2026, 3, 14, 9, 0)},
+    "3월 1회차": {"sheet": "3월1회차", "date": "3월 14일", "open": datetime(2026, 3, 11, 9, 0)},
     "3월 2회차": {"sheet": "3월2회차", "date": "3월 21일", "open": datetime(2026, 3, 21, 9, 0)},
     "3월 3회차": {"sheet": "3월3회차", "date": "3월 28일", "open": datetime(2026, 3, 28, 9, 0)}
 }
