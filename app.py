@@ -15,10 +15,11 @@ def init_connection():
 gc = init_connection()
 
 st.sidebar.title("🏸 대왕클럽 레슨 메뉴")
-menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["2월 3회차 레슨보강", "3월 1회차", "3월 2회차", "3월 3회차"])
+# 2월 3회차 삭제 및 3월 메뉴만 남김
+menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["3월 1회차", "3월 2회차", "3월 3회차"])
 
+# 2월 3회차 정보 삭제
 lesson_info = {
-    "2월 3회차 레슨보강": {"sheet": "2월3회차", "date": "3월 7일", "open": datetime(2026, 2, 22, 9, 0)},
     "3월 1회차": {"sheet": "3월1회차", "date": "3월 14일", "open": datetime(2026, 3, 14, 9, 0)},
     "3월 2회차": {"sheet": "3월2회차", "date": "3월 21일", "open": datetime(2026, 3, 21, 9, 0)},
     "3월 3회차": {"sheet": "3월3회차", "date": "3월 28일", "open": datetime(2026, 3, 28, 9, 0)}
@@ -48,7 +49,8 @@ except:
     st.error("시트를 불러올 수 없습니다.")
     st.stop()
 
-is_game_lesson_week = menu in ["2월 3회차 레슨보강", "3월 3회차"]
+# 게임 레슨은 3월 3회차에만 활성화되도록 수정
+is_game_lesson_week = menu in ["3월 3회차"]
 all_booked_names = []
 
 for row in data:
@@ -108,9 +110,17 @@ st.subheader('⏰ 헌볼 레슨 시간표 및 예약 현황')
 st.caption('헌볼 레슨과 게임 레슨 중 하나만 선택 가능합니다.' if is_game_lesson_week else '')
 
 for i, row in enumerate(data):
+    time_slot = str(row.get('시간대', '')).strip()
+    
+    # [에러 방지 1] 시간대가 비어있는 줄(빈 줄)은 무시하고 건너뜁니다.
+    if not time_slot:
+        continue
+        
     with st.container():
-        time_slot = str(row.get('시간대', ''))
-        max_cap = int(row.get('최대인원', 1))
+        # [에러 방지 2] 최대인원 칸이 비어있으면 기본값 1로 처리합니다.
+        raw_max_cap = str(row.get('최대인원', 1)).strip()
+        max_cap = int(raw_max_cap) if raw_max_cap.isdigit() else 1
+        
         b1 = str(row.get('예약자1', '')).strip()
         b2 = str(row.get('예약자2', '')).strip()
         row_num = i + 2
