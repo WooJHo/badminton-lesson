@@ -3,7 +3,7 @@ import gspread
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-st.set_page_config(page_title="대왕클럽 주말 레슨 예약", page_icon="🏸", layout="centered")
+st.set_page_config(page_title="대왕클럽 주말레슨 예약", page_icon="🏸", layout="centered")
 
 @st.cache_resource
 def init_connection():
@@ -15,14 +15,15 @@ def init_connection():
 gc = init_connection()
 
 st.sidebar.title("🏸 대왕클럽 레슨 메뉴")
-# 2월 3회차 삭제 및 3월 메뉴만 남김
-menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["3월 1회차", "3월 2회차", "3월 3회차"])
 
-# 2월 3회차 정보 삭제
+menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["3월 3회차", "4월 1회차", "4월 2회차", "4월 3회차", "4월 4회차"])
+
 lesson_info = {
-    "3월 1회차": {"sheet": "3월1회차", "date": "3월 14일", "open": datetime(2026, 3, 14, 9, 0)},
-    "3월 2회차": {"sheet": "3월2회차", "date": "3월 21일", "open": datetime(2026, 3, 21, 9, 0)},
-    "3월 3회차": {"sheet": "3월3회차", "date": "3월 28일", "open": datetime(2026, 3, 28, 9, 0)}
+    "3월 3회차": {"sheet": "3월3회차", "date": "3월 28일", "open": datetime(2026, 3, 28, 9, 0)},
+    "4월 1회차": {"sheet": "4월1회차", "date": "4월 4일", "open": datetime(2026, 4, 4, 9, 0)},
+    "4월 2회차": {"sheet": "4월2회차", "date": "4월 11일", "open": datetime(2026, 4, 11, 9, 0)},
+    "4월 3회차": {"sheet": "4월3회차", "date": "4월 18일", "open": datetime(2026, 4, 28, 9, 0)},
+    "4월 4회차": {"sheet": "4월4회차", "date": "4월 25일", "open": datetime(2026, 4, 25, 9, 0)}
 }
 current_lesson = lesson_info[menu]
 
@@ -50,7 +51,7 @@ except:
     st.stop()
 
 # 게임 레슨은 3월 3회차에만 활성화되도록 수정
-is_game_lesson_week = menu in ["3월 3회차"]
+is_game_lesson_week = menu in ["3월 3회차", "4월 4회차"]
 all_booked_names = []
 
 for row in data:
@@ -85,7 +86,7 @@ if is_game_lesson_week:
                 worksheet.update_cell(row_idx, 6, "")
                 st.rerun()
     else:
-        st.info("**현재 참가자:** 아직 신청자가 없습니다. 첫 번째로 신청해보세요!")
+        st.info("**현재 참가자:** 아직 신청자가 없습니다.")
         
     st.write("##") # 간격 띄우기
 
