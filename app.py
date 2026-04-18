@@ -22,7 +22,7 @@ lesson_info = {
     "3월 3회차": {"sheet": "3월3회차", "date": "3월 28일", "open": datetime(2026, 3, 28, 9, 0)},
     "4월 1회차": {"sheet": "4월1회차", "date": "4월 4일", "open": datetime(2026, 4, 4, 9, 0)},
     "4월 2회차": {"sheet": "4월2회차", "date": "4월 11일", "open": datetime(2026, 4, 11, 9, 0)},
-    "4월 3회차": {"sheet": "4월3회차", "date": "4월 18일", "open": datetime(2026, 4, 18, 9, 0)},
+    "4월 3회차": {"sheet": "4월3회차", "date": "4월 18일", "open": datetime(2026, 4, 17, 9, 0)},
     "4월 4회차": {"sheet": "4월4회차", "date": "4월 25일", "open": datetime(2026, 4, 25, 9, 0)}
 }
 current_lesson = lesson_info[menu]
