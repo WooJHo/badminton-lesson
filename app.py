@@ -3,7 +3,7 @@ import gspread
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-st.set_page_config(page_title="대왕클럽 주말레슨 예약", page_icon="🏸", layout="centered")
+st.set_page_config(page_title="대왕클럽 주말 레슨 예약", page_icon="🏸", layout="centered")
 
 @st.cache_resource
 def init_connection():
@@ -16,11 +16,15 @@ gc = init_connection()
 
 st.sidebar.title("🏸 대왕클럽 레슨 메뉴")
 
-menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["4월 4회차"])
+# 5월 1~4회차 메뉴 생성
+menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["5월 1회차", "5월 2회차", "5월 3회차", "5월 4회차"])
 
+# 5월 날짜 및 오픈 시간 설정 (필요시 수정 가능)
 lesson_info = {
-
-    "4월 4회차": {"sheet": "4월4회차", "date": "4월 25일", "open": datetime(2026, 4, 25, 9, 0)}
+    "5월 1회차": {"sheet": "5월1회차", "date": "5월 2일", "open": datetime(2026, 5, 1, 9, 0)},
+    "5월 2회차": {"sheet": "5월2회차", "date": "5월 9일", "open": datetime(2026, 5, 9, 9, 0)},
+    "5월 3회차": {"sheet": "5월3회차", "date": "5월 16일", "open": datetime(2026, 5, 23, 9, 0)},
+    "5월 4회차": {"sheet": "5월4회차", "date": "5월 23일", "open": datetime(2026, 5, 30, 9, 0)}
 }
 current_lesson = lesson_info[menu]
 
@@ -44,11 +48,11 @@ try:
     except:
         game_col_values = ["게임레슨"]
 except:
-    st.error("시트를 불러올 수 없습니다.")
+    st.error("시트를 불러올 수 없습니다. 구글 시트 탭 이름이 맞는지 확인해주세요.")
     st.stop()
 
-# 게임 레슨은 3월 3회차에만 활성화되도록 수정
-is_game_lesson_week = menu in ["4월 4회차"]
+# 게임 레슨은 5월 4회차에만 활성화되도록 수정
+is_game_lesson_week = menu in ["5월 4회차"]
 all_booked_names = []
 
 for row in data:
