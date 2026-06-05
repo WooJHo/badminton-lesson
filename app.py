@@ -17,14 +17,14 @@ gc = init_connection()
 st.sidebar.title("🏸 대왕클럽 레슨 메뉴")
 
 # 5월 1~4회차 메뉴 생성
-menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["5월 1회차", "5월 2회차", "5월 3회차", "5월 4회차"])
+menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["6월 1회차", "6월 2회차", "6월 3회차", "6월 4회차"])
 
 # 5월 날짜 및 오픈 시간 설정 (필요시 수정 가능)
 lesson_info = {
-    "5월 1회차": {"sheet": "5월1회차", "date": "5월 2일", "open": datetime(2026, 5, 2, 9, 0)},
-    "5월 2회차": {"sheet": "5월2회차", "date": "5월 9일", "open": datetime(2026, 5, 9, 9, 0)},
-    "5월 3회차": {"sheet": "5월3회차", "date": "5월 23일", "open": datetime(2026, 5, 23, 9, 0)},
-    "5월 4회차": {"sheet": "5월4회차", "date": "5월 30일", "open": datetime(2026, 5, 30, 9, 0)}
+    "5월 1회차": {"sheet": "6월1회차", "date": "6월 6일", "open": datetime(2026, 6, 6, 9, 0)},
+    "5월 2회차": {"sheet": "6월2회차", "date": "6월 13일", "open": datetime(2026, 6, 13, 9, 0)},
+    "5월 3회차": {"sheet": "6월3회차", "date": "6월 20일", "open": datetime(2026, 6, 20, 9, 0)},
+    "5월 4회차": {"sheet": "6월4회차", "date": "6월 27일", "open": datetime(2026, 6, 27, 9, 0)}
 }
 current_lesson = lesson_info[menu]
 
@@ -65,7 +65,7 @@ if is_game_lesson_week:
     
 all_booked_names = [n for n in all_booked_names if n != ""]
 
-student_list = ["이름을 선택하세요", "김효은", "김현", "김대중", "이대균", "이지후", "이윤성", "신주원", "한지수", "김가영"]
+student_list = ["이름을 선택하세요", "김효은", "김현", "김대중", "이재훈", "이지후", "이윤성", "신주원", "한지수", "김가영"]
 selected_name = st.selectbox('👇 본인 이름을 선택하고 아래 레슨을 클릭하세요', student_list)
 user_name = "" if selected_name == "이름을 선택하세요" else selected_name
 
