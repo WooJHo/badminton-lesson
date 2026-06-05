@@ -21,10 +21,10 @@ menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["6월 1회차
 
 # 5월 날짜 및 오픈 시간 설정 (필요시 수정 가능)
 lesson_info = {
-    "5월 1회차": {"sheet": "6월1회차", "date": "6월 6일", "open": datetime(2026, 6, 6, 9, 0)},
-    "5월 2회차": {"sheet": "6월2회차", "date": "6월 13일", "open": datetime(2026, 6, 13, 9, 0)},
-    "5월 3회차": {"sheet": "6월3회차", "date": "6월 20일", "open": datetime(2026, 6, 20, 9, 0)},
-    "5월 4회차": {"sheet": "6월4회차", "date": "6월 27일", "open": datetime(2026, 6, 27, 9, 0)}
+    "6월 1회차": {"sheet": "6월1회차", "date": "6월 6일", "open": datetime(2026, 6, 6, 9, 0)},
+    "6월 2회차": {"sheet": "6월2회차", "date": "6월 13일", "open": datetime(2026, 6, 13, 9, 0)},
+    "6월 3회차": {"sheet": "6월3회차", "date": "6월 20일", "open": datetime(2026, 6, 20, 9, 0)},
+    "6월 4회차": {"sheet": "6월4회차", "date": "6월 27일", "open": datetime(2026, 6, 27, 9, 0)}
 }
 current_lesson = lesson_info[menu]
 
