@@ -17,14 +17,14 @@ gc = init_connection()
 st.sidebar.title("🏸 대왕클럽 레슨 메뉴")
 
 # 5월 1~4회차 메뉴 생성
-menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["7월 1회차", "7월 2회차", "7월 3회차", "7월 4회차"])
+menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["8월 1회차", "8월 2회차", "8월 3회차", "8월 4회차"])
 
 # 5월 날짜 및 오픈 시간 설정 (필요시 수정 가능)
 lesson_info = {
-    "7월 1회차": {"sheet": "7월1회차", "date": "7월 4일", "open": datetime(2026, 7, 4, 9, 0)},
-    "7월 2회차": {"sheet": "7월2회차", "date": "7월 12일", "open": datetime(2026, 7, 12, 9, 0)},
-    "7월 3회차": {"sheet": "7월3회차", "date": "7월 18일", "open": datetime(2026, 7, 18, 9, 0)},
-    "7월 4회차": {"sheet": "7월4회차", "date": "7월 25일", "open": datetime(2026, 7, 25, 9, 0)}
+    "7월 1회차": {"sheet": "8월1회차", "date": "8월 1일", "open": datetime(2026, 8, 1, 9, 0)},
+    "7월 2회차": {"sheet": "8월2회차", "date": "8월 9일", "open": datetime(2026, 8, 9, 9, 0)},
+    "7월 3회차": {"sheet": "8월3회차", "date": "8월 15일", "open": datetime(2026, 8, 15, 9, 0)},
+    "7월 4회차": {"sheet": "8월4회차", "date": "8월 22일", "open": datetime(2026, 8, 22, 9, 0)}
 }
 current_lesson = lesson_info[menu]
 
@@ -51,8 +51,8 @@ except:
     st.error("시트를 불러올 수 없습니다. 구글 시트 탭 이름이 맞는지 확인해주세요.")
     st.stop()
 
-# 게임 레슨은 5월 4회차에만 활성화되도록 수정
-is_game_lesson_week = menu in ["7월 4회차"]
+# 게임 레슨은 4회차에만 활성화되도록 수정
+is_game_lesson_week = menu in ["8월 4회차"]
 all_booked_names = []
 
 for row in data:
