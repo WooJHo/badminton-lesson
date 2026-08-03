@@ -65,7 +65,7 @@ if is_game_lesson_week:
     
 all_booked_names = [n for n in all_booked_names if n != ""]
 
-student_list = ["이름을 선택하세요", "김효은", "김현", "김대중", "이재훈", "이지후", "이윤성", "신주원", "한지수", "김가영"]
+student_list = ["이름을 선택하세요", "김효은", "김현", "원유준", "이재훈", "이지후", "이윤성", "신주원", "한지수", "김가영"]
 selected_name = st.selectbox('👇 본인 이름을 선택하고 아래 레슨을 클릭하세요', student_list)
 user_name = "" if selected_name == "이름을 선택하세요" else selected_name
 
