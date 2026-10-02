@@ -17,14 +17,14 @@ gc = init_connection()
 st.sidebar.title("🏸 대왕클럽 레슨 메뉴")
 
 # 5월 1~4회차 메뉴 생성
-menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["9월 1회차", "9월 2회차", "9월 3회차", "9월 4회차"])
+menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["1회차", "2회차", "3회차", "4회차"])
 
 # 5월 날짜 및 오픈 시간 설정 (필요시 수정 가능)
 lesson_info = {
-    "9월 1회차": {"sheet": "9월1회차", "date": "9월 5일", "open": datetime(2026, 9, 5, 9, 0)},
-    "9월 2회차": {"sheet": "9월2회차", "date": "9월 12일", "open": datetime(2026, 9, 12, 9, 0)},
-    "9월 3회차": {"sheet": "9월3회차", "date": "9월 19일", "open": datetime(2026, 9, 19, 9, 0)},
-    "9월 4회차": {"sheet": "9월4회차", "date": "9월 27일", "open": datetime(2026, 9, 27, 9, 0)}
+    "1회차": {"sheet": "1회차", "date": "10월 3일", "open": datetime(2026, 10, 3, 9, 0)},
+    "2회차": {"sheet": "2회차", "date": "10월 11일", "open": datetime(2026, 10, 11, 9, 0)},
+    "3회차": {"sheet": "3회차", "date": "10월 17일", "open": datetime(2026, 10, 17, 9, 0)},
+    "4회차": {"sheet": "4회차", "date": "10월 24일", "open": datetime(2026, 10, 24, 9, 0)}
 }
 current_lesson = lesson_info[menu]
 
