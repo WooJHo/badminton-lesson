@@ -52,7 +52,7 @@ except:
     st.stop()
 
 # 게임 레슨은 4회차에만 활성화되도록 수정
-is_game_lesson_week = menu in ["9월 4회차"]
+is_game_lesson_week = menu in ["4회차"]
 all_booked_names = []
 
 for row in data:
