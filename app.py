@@ -21,7 +21,7 @@ menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["1회차", "2
 
 # 5월 날짜 및 오픈 시간 설정 (필요시 수정 가능)
 lesson_info = {
-    "1회차": {"sheet": "1회차", "date": "11월 7일", "open": datetime(2026, 11, 6, 9, 0)},
+    "1회차": {"sheet": "1회차", "date": "11월 7일", "open": datetime(2026, 11, 7, 9, 0)},
     "2회차": {"sheet": "2회차", "date": "11월 14일", "open": datetime(2026, 11, 14, 9, 0)},
     "3회차": {"sheet": "3회차", "date": "11월 21일", "open": datetime(2026, 11, 21, 9, 0)},
     "4회차": {"sheet": "4회차", "date": "11월 28일", "open": datetime(2026, 11, 28, 9, 0)}
