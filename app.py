@@ -21,10 +21,10 @@ menu = st.sidebar.radio("원하시는 회차를 선택하세요", ["1회차", "2
 
 # 5월 날짜 및 오픈 시간 설정 (필요시 수정 가능)
 lesson_info = {
-    "1회차": {"sheet": "1회차", "date": "10월 3일", "open": datetime(2026, 10, 3, 9, 0)},
-    "2회차": {"sheet": "2회차", "date": "10월 11일", "open": datetime(2026, 10, 11, 9, 0)},
-    "3회차": {"sheet": "3회차", "date": "10월 17일", "open": datetime(2026, 10, 17, 9, 0)},
-    "4회차": {"sheet": "4회차", "date": "10월 24일", "open": datetime(2026, 10, 24, 9, 0)}
+    "1회차": {"sheet": "1회차", "date": "11월 7일", "open": datetime(2026, 11, 7, 9, 0)},
+    "2회차": {"sheet": "2회차", "date": "11월 14일", "open": datetime(2026, 11, 14, 9, 0)},
+    "3회차": {"sheet": "3회차", "date": "11월 21일", "open": datetime(2026, 11, 21, 9, 0)},
+    "4회차": {"sheet": "4회차", "date": "11월 28일", "open": datetime(2026, 11, 28, 9, 0)}
 }
 current_lesson = lesson_info[menu]
 
@@ -65,7 +65,7 @@ if is_game_lesson_week:
     
 all_booked_names = [n for n in all_booked_names if n != ""]
 
-student_list = ["이름을 선택하세요", "김효은", "김현", "원유준", "이재훈", "이지후", "이윤성", "신주원", "김가영"]
+student_list = ["이름을 선택하세요", "김효은", "김현", "이재훈", "신주원"]
 selected_name = st.selectbox('👇 본인 이름을 선택하고 아래 레슨을 클릭하세요', student_list)
 user_name = "" if selected_name == "이름을 선택하세요" else selected_name
 
